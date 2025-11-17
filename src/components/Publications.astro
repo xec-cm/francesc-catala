@@ -1,0 +1,238 @@
+---
+import publicationsData from '../data/publications.json';
+
+// Sort by year, most recent first
+const publications = publicationsData.sort((a, b) => b.year - a.year);
+
+// Helper function to format authors list
+function formatAuthors(authors: string[]): string {
+  if (authors.length === 0) return '';
+  if (authors.length === 1) return authors[0];
+  if (authors.length === 2) return `${authors[0]} and ${authors[1]}`;
+
+  // Find if Català-Moll is in the authors
+  const catalaMollIndex = authors.findIndex(author =>
+    author.includes('Català-Moll') || author.includes('Catala-Moll') || author.includes('F. Català-Moll')
+  );
+
+  if (catalaMollIndex === 0) {
+    return `${authors[0]} et al.`;
+  } else if (catalaMollIndex > 0) {
+    return `${authors[0]}, ..., ${authors[catalaMollIndex]}, et al.`;
+  }
+
+  return `${authors[0]} et al.`;
+}
+---
+
+<section class="pt-12 pb-20 px-4 sm:px-6 lg:px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">
+        Selected Publications
+      </h2>
+      <p class="text-lg text-slate-600 font-sans max-w-2xl mx-auto">
+        Peer-reviewed research in epigenetics, microbiome, and immunology
+      </p>
+    </div>
+
+    <!-- Carousel Container -->
+    <div class="relative">
+      <!-- Navigation Buttons -->
+      <button
+        id="pub-scroll-left"
+        class="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white hover:bg-slate-50 text-slate-700 rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Scroll left"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button
+        id="pub-scroll-right"
+        class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white hover:bg-slate-50 text-slate-700 rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Scroll right"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- Scrollable Grid Container -->
+      <div
+        id="publications-carousel"
+        class="overflow-x-auto scroll-smooth pb-4 scrollbar-hide"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
+      >
+        <!-- Grid that adapts based on screen size -->
+        <div class="grid grid-flow-col auto-cols-[100%] sm:auto-cols-[calc(50%-0.75rem)] lg:auto-cols-[calc(33.333%-1rem)] gap-6">
+          {publications.map((pub) => (
+            <a
+              href={pub.link || `https://doi.org/${pub.doi}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group cursor-pointer"
+            >
+              <article class="bg-slate-50 rounded-lg p-6 h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:bg-white hover:-translate-y-1 border border-slate-200 hover:border-primary">
+                <!-- Year Badge -->
+                <div class="flex items-center justify-between mb-3">
+                  <span class="inline-block px-3 py-1 bg-primary/10 text-primary-dark rounded-full text-sm font-medium">
+                    {pub.year}
+                  </span>
+                  <svg class="w-5 h-5 text-slate-400 group-hover:text-primary transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-lg font-serif font-bold text-slate-900 mb-3 line-clamp-3 group-hover:text-primary transition-colors duration-200">
+                  {pub.title}
+                </h3>
+
+                <!-- Authors -->
+                <p class="text-sm text-slate-600 mb-3 line-clamp-2">
+                  {formatAuthors(pub.authors)}
+                </p>
+
+                <!-- Journal -->
+                <p class="text-sm font-medium text-primary-dark mb-2 italic">
+                  {pub.journal}
+                </p>
+
+                <!-- Spacer -->
+                <div class="flex-grow"></div>
+
+                <!-- DOI -->
+                {pub.doi && (
+                  <p class="text-xs text-slate-500 mt-4 font-mono truncate">
+                    DOI: {pub.doi}
+                  </p>
+                )}
+              </article>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Progress Indicators (dots) for mobile -->
+      <div class="flex justify-center gap-2 mt-6 md:hidden" id="pub-indicators">
+        {publications.map((_, index) => (
+          <button
+            class="pub-indicator w-2 h-2 rounded-full bg-slate-300 transition-all duration-200"
+            data-index={index}
+            aria-label={`Go to publication ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+
+    <!-- View All Publications Link -->
+    <div class="text-center mt-12">
+      <a
+        href="/publications"
+        class="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-medium transition-colors duration-200"
+      >
+        View all publications
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  // Carousel scroll functionality
+  const carousel = document.getElementById('publications-carousel');
+  const scrollLeftBtn = document.getElementById('pub-scroll-left');
+  const scrollRightBtn = document.getElementById('pub-scroll-right');
+  const indicators = document.querySelectorAll('.pub-indicator');
+
+  if (carousel && scrollLeftBtn && scrollRightBtn) {
+    // Calculate scroll amount based on screen size
+    function getScrollAmount(): number {
+      const width = window.innerWidth;
+      if (width < 640) return carousel.clientWidth; // Mobile: full width
+      if (width < 1024) return carousel.clientWidth / 2; // Tablet: half width
+      return carousel.clientWidth / 3; // Desktop: third width
+    }
+
+    scrollLeftBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    // Update button states based on scroll position
+    function updateButtonStates() {
+      const isAtStart = carousel.scrollLeft <= 10;
+      const isAtEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10;
+
+      scrollLeftBtn.disabled = isAtStart;
+      scrollRightBtn.disabled = isAtEnd;
+    }
+
+    // Update indicators
+    function updateIndicators() {
+      const scrollPercentage = carousel.scrollLeft / (carousel.scrollWidth - carousel.clientWidth);
+      const currentIndex = Math.round(scrollPercentage * (indicators.length - 1));
+
+      indicators.forEach((indicator, index) => {
+        if (index === currentIndex) {
+          indicator.classList.add('bg-primary', 'w-8');
+          indicator.classList.remove('bg-slate-300', 'w-2');
+        } else {
+          indicator.classList.remove('bg-primary', 'w-8');
+          indicator.classList.add('bg-slate-300', 'w-2');
+        }
+      });
+    }
+
+    carousel.addEventListener('scroll', () => {
+      updateButtonStates();
+      updateIndicators();
+    });
+
+    // Indicator click handlers
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        const scrollAmount = (carousel.scrollWidth - carousel.clientWidth) / (indicators.length - 1) * index;
+        carousel.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      });
+    });
+
+    updateButtonStates(); // Initial state
+    updateIndicators(); // Initial state
+
+    // Update on window resize
+    window.addEventListener('resize', () => {
+      updateButtonStates();
+    });
+  }
+</script>
