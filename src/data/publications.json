@@ -48,7 +48,8 @@
     "volume": "20",
     "number": "2",
     "pages": "159–164",
-    "tags": []
+    "tags": [],
+    "featured": true
   },
   {
     "id": "Gandasegui_2024",
@@ -327,7 +328,8 @@
     "volume": "13",
     "number": "",
     "pages": "",
-    "tags": []
+    "tags": [],
+    "featured": true
   },
   {
     "id": "Borgognone2022",
@@ -379,7 +381,8 @@
     "volume": "38",
     "number": "",
     "pages": "",
-    "tags": []
+    "tags": [],
+    "featured": true
   },
   {
     "id": "F. Català-Moll and A.G. Ferreté-Bonastre and T. Li and D. Weichenhan and P. Lutsik and L. Ciudad and Á.F. Álvarez-Prado and J. Rodríguez-Ubreva and C. Klemann and C. Speckmann and A. Vilas-Zornoza and H. Abolhassani and M. Martínez-Gallo and R. Dieli-Crimi and J.G. Rivière and A. Martín-Nalda and R. Colobran and P. Soler-Palacín and S. Kracker and L. Hammarström and F. Prosper and A. Durandy and B. Grimbacher and C. Plass and E. Ballestar",
@@ -419,7 +422,8 @@
     "volume": "49",
     "number": "",
     "pages": "",
-    "tags": []
+    "tags": [],
+    "featured": true
   },
   {
     "id": "Min2021",
@@ -590,7 +594,8 @@
     "volume": "53",
     "number": "",
     "pages": "",
-    "tags": []
+    "tags": [],
+    "featured": true
   },
   {
     "id": "Barturen2021",
@@ -737,7 +742,8 @@
     "volume": "73",
     "number": "",
     "pages": "",
-    "tags": []
+    "tags": [],
+    "featured": true
   },
   {
     "id": "Teruel2021",
@@ -1010,22 +1016,6 @@
     "tags": []
   },
   {
-    "id": "Francesc_Catal{\\`a}-Moll_180121134",
-    "entryType": "article",
-    "title": "Transcriptome and Methylome Integrative Molecular Analysis Uncovers a New Systemic Autoimmune Disease Classification",
-    "authors": [
-      "Francesc Catal{\\`a"
-    ],
-    "journal": "Arthritis \\& Rheumatology",
-    "year": 2018,
-    "doi": "",
-    "link": "",
-    "volume": "",
-    "number": "",
-    "pages": "",
-    "tags": []
-  },
-  {
     "id": "V.C. Rodríguez-Cortez and P. Martínez-Redondo and F. Català-Moll and J. Rodríguez-Ubreva and A. Garcia-Gomez and G. Poorani-Subramani and L. Ciudad and H. Hernando and A. Pérez-García and C. Company and J.M. Urquiza and A.R. Ramiro and J.M. Di Noia and A. Vaquero and E. Ballestar",
     "entryType": "article",
     "title": "Activation-induced cytidine deaminase targets SUV4-20-mediated histone H4K20 trimethylation to class-switch recombination sites",
@@ -1080,7 +1070,8 @@
     "volume": "21",
     "number": "",
     "pages": "",
-    "tags": []
+    "tags": [],
+    "featured": true
   },
   {
     "id": "A. Garcia-Gomez and T. Li and M. Kerick and F. Català-Moll and N.R. Comet and J. Rodríguez-Ubreva and L. De La Rica and M.R. Branco and J. Martín and E. Ballestar",

@@ -75,40 +75,57 @@ function formatAuthors(authors: string[]): string {
               rel="noopener noreferrer"
               class="group cursor-pointer"
             >
-              <article class="bg-slate-50 rounded-lg p-6 h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:bg-white hover:-translate-y-1 border border-slate-200 hover:border-primary">
+              <article class="relative bg-white rounded-xl p-6 h-full flex flex-col transition-all duration-300 hover:shadow-2xl border-2 border-slate-200 hover:border-primary group-hover:-translate-y-1 overflow-hidden">
+                <!-- Accent bar on top -->
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 to-primary/5 group-hover:from-primary group-hover:to-primary/60 transition-all duration-300"></div>
+
                 <!-- Year Badge -->
-                <div class="flex items-center justify-between mb-3">
-                  <span class="inline-block px-3 py-1 bg-primary/10 text-primary-dark rounded-full text-sm font-medium">
+                <div class="flex items-center justify-between mb-4 mt-2">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 text-primary-dark rounded-lg text-xs font-semibold border border-primary/10">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                     {pub.year}
                   </span>
-                  <svg class="w-5 h-5 text-slate-400 group-hover:text-primary transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </div>
 
                 <!-- Title -->
-                <h3 class="text-lg font-serif font-bold text-slate-900 mb-3 line-clamp-3 group-hover:text-primary transition-colors duration-200">
+                <h3 class="text-base font-serif font-bold text-slate-900 mb-3 line-clamp-3 group-hover:text-primary transition-colors duration-200 leading-snug">
                   {pub.title}
                 </h3>
 
                 <!-- Authors -->
-                <p class="text-sm text-slate-600 mb-3 line-clamp-2">
+                <p class="text-xs text-slate-600 mb-3 line-clamp-2 leading-relaxed">
                   {formatAuthors(pub.authors)}
-                </p>
-
-                <!-- Journal -->
-                <p class="text-sm font-medium text-primary-dark mb-2 italic">
-                  {pub.journal}
                 </p>
 
                 <!-- Spacer -->
                 <div class="flex-grow"></div>
 
-                <!-- DOI -->
-                {pub.doi && (
-                  <p class="text-xs text-slate-500 mt-4 font-mono truncate">
-                    DOI: {pub.doi}
+                <!-- Journal -->
+                <div class="pt-3 border-t border-slate-100 mt-2">
+                  <p class="text-xs font-semibold text-primary-dark italic line-clamp-1">
+                    {pub.journal}
                   </p>
+                  {pub.doi && (
+                    <p class="text-xs text-slate-400 mt-1.5 font-mono truncate">
+                      {pub.doi}
+                    </p>
+                  )}
+                </div>
+
+                <!-- Featured Badge -->
+                {pub.featured && (
+                  <div class="absolute bottom-4 right-4">
+                    <img
+                      src="/1-2962cfe1.ico"
+                      alt="Featured publication"
+                      class="w-12 h-12 object-contain group-hover:scale-110 transition-all duration-300"
+                    />
+                  </div>
                 )}
               </article>
             </a>
