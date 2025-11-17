@@ -17,15 +17,18 @@ const navLinks = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
 
-      <!-- Left side: Logo -->
+      <!-- Left side: Logo + Name -->
       <div class="flex items-center">
         <!-- Logo from .ico file - clickable to home -->
-        <a href="/" class="cursor-pointer hover:opacity-80 transition-opacity duration-200">
+        <a href="/" class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity duration-200">
           <img
             src="/1-2962cfe1.ico"
-            alt="Francesc Català logo"
+            alt="Francesc Català-Moll logo"
             class="w-10 h-10 sm:w-12 sm:h-12"
           />
+          <span class="text-xl sm:text-2xl font-handwritten font-bold text-primary">
+            Francesc Català-Moll
+          </span>
         </a>
       </div>
 
@@ -37,7 +40,7 @@ const navLinks = [
           {navLinks.map((link) => (
             <a
               href={link.href}
-              class="text-xl font-handwritten text-black hover:text-slate-700 transition-colors duration-200"
+              class="text-2xl font-handwritten text-black hover:text-slate-700 transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -49,7 +52,7 @@ const navLinks = [
           <!-- Contact me - Primary button -->
           <a
             href="/contact"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-hover rounded-lg transition-colors duration-200"
+            class="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-primary hover:bg-primary-hover rounded-lg transition-colors duration-200"
           >
             Contact me
           </a>
@@ -75,7 +78,7 @@ const navLinks = [
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="text-lg font-handwritten text-black hover:text-slate-700 transition-colors duration-200 py-2"
+          class="text-xl font-handwritten text-black hover:text-slate-700 transition-colors duration-200 py-2"
         >
           {link.label}
         </a>
