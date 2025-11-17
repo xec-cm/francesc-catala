@@ -5,24 +5,16 @@ import publicationsData from '../data/publications.json';
 // Sort by year, most recent first
 const publications = publicationsData.sort((a, b) => b.year - a.year);
 
-// Helper function to format authors list
+// Helper function to format all authors
 function formatAuthors(authors: string[]): string {
   if (authors.length === 0) return '';
   if (authors.length === 1) return authors[0];
   if (authors.length === 2) return `${authors[0]} and ${authors[1]}`;
 
-  // Find if Català-Moll is in the authors
-  const catalaMollIndex = authors.findIndex(author =>
-    author.includes('Català-Moll') || author.includes('Catala-Moll') || author.includes('F. Català-Moll')
-  );
-
-  if (catalaMollIndex === 0) {
-    return `${authors[0]} et al.`;
-  } else if (catalaMollIndex > 0) {
-    return `${authors[0]}, ..., ${authors[catalaMollIndex]}, et al.`;
-  }
-
-  return `${authors[0]} et al.`;
+  // Join all authors with commas, and "and" before the last one
+  const lastAuthor = authors[authors.length - 1];
+  const otherAuthors = authors.slice(0, -1).join(', ');
+  return `${otherAuthors}, and ${lastAuthor}`;
 }
 
 // Group publications by year
@@ -63,6 +55,16 @@ const years = Object.keys(publicationsByYear).sort((a, b) => Number(b) - Number(
         <p class="text-sm text-slate-500 font-sans mt-2">
           {publications.length} publications
         </p>
+
+        <!-- Featured publications legend -->
+        <div class="mt-6 flex items-center justify-end gap-2 text-sm text-slate-600">
+          <img
+            src="/1-2962cfe1.ico"
+            alt="Featured"
+            class="w-5 h-5 object-contain"
+          />
+          <span>Featured publications</span>
+        </div>
       </header>
 
       <!-- Publications by Year -->
@@ -89,8 +91,19 @@ const years = Object.keys(publicationsByYear).sort((a, b) => Number(b) - Number(
                   class="group block"
                 >
                   <article class="relative pl-6 pr-4 py-5 border-l-4 border-slate-200 group-hover:border-primary transition-all duration-300 bg-white group-hover:bg-slate-50/50">
+                    <!-- Featured Badge -->
+                    {pub.featured && (
+                      <div class="absolute top-4 right-4">
+                        <img
+                          src="/1-2962cfe1.ico"
+                          alt="Featured publication"
+                          class="w-12 h-12 object-contain"
+                        />
+                      </div>
+                    )}
+
                     <!-- Title -->
-                    <h3 class="text-lg font-serif font-bold text-slate-900 group-hover:text-primary transition-colors duration-200 mb-3 pr-8">
+                    <h3 class="text-lg font-serif font-bold text-slate-900 group-hover:text-primary transition-colors duration-200 mb-3 pr-20">
                       {pub.title}
                       <svg class="inline-block w-4 h-4 ml-2 text-slate-400 group-hover:text-primary transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
