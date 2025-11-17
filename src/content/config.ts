@@ -13,20 +13,6 @@ const blogCollection = defineCollection({
   }),
 });
 
-// Projects collection schema
-const projectsCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    shortDescription: z.string(),
-    image: z.string(),
-    year: z.number(),
-    techStack: z.array(z.string()),
-    link: z.string().optional(),
-    featured: z.boolean().optional().default(false),
-  }),
-});
-
 // Publications collection schema
 const publicationsCollection = defineCollection({
   type: 'content',
@@ -55,7 +41,6 @@ const metaCollection = defineCollection({
 // Export collections
 export const collections = {
   blog: blogCollection,
-  projects: projectsCollection,
   publications: publicationsCollection,
   meta: metaCollection,
 };

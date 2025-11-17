@@ -1,0 +1,45 @@
+{
+  "name": "Francesc Català-Moll",
+  "title": "Uncovering microbiome–immune system interactions through AI",
+  "greeting": "Hi there",
+  "description": [
+    {
+      "type": "text",
+      "content": "I'm a bioinformatician specialising in microbiome research, epigenetics, and multi-omics integration. My work focuses on understanding how microbial communities and host biology intersect to shape immune responses, infectious disease dynamics, and clinical outcomes."
+    },
+    {
+      "type": "custom",
+      "parts": [
+        "Over the years I've built and maintained reproducible analytical workflows, led the bioinformatics efforts of a microbial genomics research group, and contributed to the R/Bioconductor ecosystem as a developer and maintainer of packages such as ",
+        {
+          "type": "link",
+          "text": "dar",
+          "url": "https://microbialgenomics-irsicaixaorg.github.io/dar/"
+        },
+        " and ",
+        {
+          "type": "link",
+          "text": "biocroxytest",
+          "url": "https://xec-cm.github.io/biocroxytest/"
+        },
+        ". I enjoy turning noisy, high-dimensional data into clear, interpretable results for biologists and clinicians."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "I am now expanding this foundation into the field of artificial intelligence, using machine learning to dissect the complex relationship between the microbiome and the host immune system. By combining robust statistics, multi-omic data and modern AI methods, my goal is to reveal patterns that are invisible to classical analysis and bring us closer to a mechanistic understanding of human health."
+    }
+  ],
+  "image": {
+    "src": "/hero.svg",
+    "alt": "Francesc Català-Moll"
+  },
+  "social": {
+    "github": "https://github.com/xec-cm",
+    "orcid": "https://orcid.org/0000-0002-2354-8648",
+    "linkedin": "https://www.linkedin.com/in/francesc-catal%C3%A0-moll-11342485/",
+    "email": "mailto:fcatala@irsicaixa.es",
+    "scholar": "https://scholar.google.es/citations?user=BtCVHLgAAAAJ&hl",
+    "twitter": "https://twitter.com/fcatalamoll"
+  }
+}
