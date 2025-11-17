@@ -1,0 +1,95 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const navLinks = [
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/projects", label: "Projects" },
+  { href: "/publications", label: "Publications" },
+];
+---
+
+<header class={`fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 ${className}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Left side: Logo -->
+      <div class="flex items-center">
+        <!-- Logo from .ico file - clickable to home -->
+        <a href="/" class="cursor-pointer hover:opacity-80 transition-opacity duration-200">
+          <img
+            src="/1-2962cfe1.ico"
+            alt="Francesc Català logo"
+            class="w-10 h-10 sm:w-12 sm:h-12"
+          />
+        </a>
+      </div>
+
+      <!-- Right side: Navigation + Buttons -->
+      <div class="flex items-center gap-6">
+
+        <!-- Navigation links - hidden on mobile -->
+        <nav class="hidden lg:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-xl font-handwritten text-black hover:text-slate-700 transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Action buttons -->
+        <div class="flex items-center gap-3">
+          <!-- Contact me - Primary button -->
+          <a
+            href="/contact"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-hover rounded-lg transition-colors duration-200"
+          >
+            Contact me
+          </a>
+
+          <!-- Mobile menu button -->
+          <button
+            id="mobile-menu-button"
+            class="lg:hidden p-2 text-slate-600 hover:text-slate-900 transition-colors"
+            aria-label="Toggle menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md">
+    <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-lg font-handwritten text-black hover:text-slate-700 transition-colors duration-200 py-2"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

@@ -1,16 +1,16 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+		<div class="text-center">
+			<h1 class="text-4xl font-bold text-slate-900 mb-4">
+				Welcome to My Academic Website
+			</h1>
+			<p class="text-lg text-slate-600 max-w-2xl mx-auto">
+				This is the homepage. More content will be added in future phases.
+			</p>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Custom CSS Variables */
+:root {
+  /* Primary brand color - Plant green from logo */
+  --color-primary: #617056;
+  --color-primary-hover: #4f5c47;
+  --color-primary-light: #7a8a6d;
+  --color-primary-dark: #3d4435;
+}
