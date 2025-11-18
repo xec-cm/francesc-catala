@@ -26,7 +26,7 @@ function formatAuthors(authors: string[]): string {
 ---
 
 <section class="pt-12 pb-20 px-4 sm:px-6 lg:px-8 bg-white">
-  <div class="max-w-7xl mx-auto">
+  <div class="mx-auto" style="max-width: 88rem;">
     <!-- Section Header -->
     <div class="text-center mb-12">
       <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">
@@ -75,7 +75,7 @@ function formatAuthors(authors: string[]): string {
               rel="noopener noreferrer"
               class="group cursor-pointer"
             >
-              <article class="relative bg-white rounded-xl p-6 h-full flex flex-col transition-all duration-300 hover:shadow-2xl border-2 border-slate-200 hover:border-primary group-hover:-translate-y-1 overflow-hidden">
+              <article class="relative bg-white rounded-xl p-6 h-full flex flex-col transition-all duration-300 hover:shadow-2xl border-2 border-slate-200 hover:border-primary group-hover:-translate-y-1 group-hover:z-10 overflow-hidden">
                 <!-- Accent bar on top -->
                 <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 to-primary/5 group-hover:from-primary group-hover:to-primary/60 transition-all duration-300"></div>
 
@@ -190,6 +190,9 @@ function formatAuthors(authors: string[]): string {
   const indicators = document.querySelectorAll('.pub-indicator');
 
   if (carousel && scrollLeftBtn && scrollRightBtn) {
+    let autoScrollInterval: number | null = null;
+    let isPaused = false;
+
     // Calculate scroll amount based on screen size
     function getScrollAmount(): number {
       const width = window.innerWidth;
@@ -198,12 +201,54 @@ function formatAuthors(authors: string[]): string {
       return carousel.clientWidth / 3; // Desktop: third width
     }
 
+    // Smooth continuous auto-scroll
+    function autoScroll() {
+      if (isPaused) return;
+
+      const isAtEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10;
+
+      if (isAtEnd) {
+        // Go back to start
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Smooth scroll by 1 pixel
+        carousel.scrollLeft += 1;
+      }
+    }
+
+    // Start auto-scroll
+    function startAutoScroll() {
+      if (autoScrollInterval) return;
+      autoScrollInterval = window.setInterval(autoScroll, 30); // 30ms for smooth animation
+    }
+
+    // Stop auto-scroll
+    function stopAutoScroll() {
+      if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+      }
+    }
+
+    // Pause/resume on hover
+    carousel.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      isPaused = false;
+    });
+
     scrollLeftBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+      stopAutoScroll();
+      setTimeout(startAutoScroll, 3000); // Resume after 3 seconds
     });
 
     scrollRightBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+      stopAutoScroll();
+      setTimeout(startAutoScroll, 3000); // Resume after 3 seconds
     });
 
     // Update button states based on scroll position
@@ -241,11 +286,16 @@ function formatAuthors(authors: string[]): string {
       indicator.addEventListener('click', () => {
         const scrollAmount = (carousel.scrollWidth - carousel.clientWidth) / (indicators.length - 1) * index;
         carousel.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+        stopAutoScroll();
+        setTimeout(startAutoScroll, 3000); // Resume after 3 seconds
       });
     });
 
     updateButtonStates(); // Initial state
     updateIndicators(); // Initial state
+
+    // Start auto-scroll on load
+    startAutoScroll();
 
     // Update on window resize
     window.addEventListener('resize', () => {

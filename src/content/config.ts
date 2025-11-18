@@ -38,9 +38,24 @@ const metaCollection = defineCollection({
   }),
 });
 
+// Projects collection schema
+const projectsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    image: z.string(),
+    technologies: z.array(z.string()),
+    github: z.string().optional(),
+    demo: z.string().optional(),
+    order: z.number(),
+  }),
+});
+
 // Export collections
 export const collections = {
   blog: blogCollection,
   publications: publicationsCollection,
   meta: metaCollection,
+  projects: projectsCollection,
 };
