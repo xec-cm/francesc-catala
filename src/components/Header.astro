@@ -12,7 +12,7 @@ const navLinks = [
 ];
 ---
 
-<header class={`fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 ${className}`}>
+<header id="main-header" class={`fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 transition-transform duration-300 ${className}`}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
 
@@ -94,4 +94,27 @@ const navLinks = [
   menuButton?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
   });
+
+  // Header hide/show on scroll
+  let lastScrollY = window.scrollY;
+  const header = document.getElementById('main-header');
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY <= 0) {
+      // At the top - always show header
+      header?.classList.remove('-translate-y-full');
+    } else if (currentScrollY > lastScrollY) {
+      // Scrolling down - hide header
+      header?.classList.add('-translate-y-full');
+    } else {
+      // Scrolling up - show header
+      header?.classList.remove('-translate-y-full');
+    }
+
+    lastScrollY = currentScrollY;
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
 </script>
