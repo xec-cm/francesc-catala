@@ -2,7 +2,7 @@
 title: "dar – Differential Abundance Analysis by Consensus"
 description: "An R/Bioconductor package designed to tackle robust differential abundance testing in microbiome research. Microbiome data are sparse, highly variable and compositional, making single-method approaches unstable. dar provides a consensus-based framework that integrates multiple state-of-the-art DA methods into pipeable, recipe-like workflows. Results can be aggregated using different consensus strategies like majority voting or weighted combinations, improving robustness, interpretability and reproducibility. Supports phyloseq and TreeSummarizedExperiment data structures with visualization tools and workflow export/import functionality."
 short_description: "R/Bioconductor package for robust differential abundance testing using consensus-based integration of multiple DA methods in microbiome research."
-image: "/dar.svg"
+image: "/images/projects/dar.svg"
 technologies:
   - "R"
   - "Bioconductor"

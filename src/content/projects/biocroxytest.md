@@ -2,7 +2,7 @@
 title: "biocroxytest – Handle Long Tests in Bioconductor Packages"
 description: "An R/Bioconductor package designed to work with long-running tests in Bioconductor software. Bioconductor's build system enforces strict time limits on standard test suites, making it difficult to include expensive integration tests or large-data checks. biocroxytest introduces a roxygen2-based workflow with a dedicated @longtests roclet, allowing developers to annotate long tests directly inside roxygen2 documentation comments. These annotated blocks are automatically extracted into separate test files under a longtests/ directory, enabling independent execution in specialised CI jobs without compromising daily build speed."
 short_description: "R/Bioconductor package for managing long-running tests through roxygen2 annotations, extracted into separate test files for independent CI execution."
-image: "/biocroxytest.svg"
+image: "/images/projects/biocroxytest.svg"
 technologies:
   - "R"
   - "Bioconductor"

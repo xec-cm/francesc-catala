@@ -2,7 +2,7 @@
 title: "CovidTag – Tracking SARS-CoV-2 variants in Spain"
 description: "A public web application designed at IrsiCaixa to monitor the spread and replacement of SARS-CoV-2 variants across Spain. The platform aggregates genomic data from GISAID and provides an up-to-date view of how viral lineages circulate in each autonomous community over time. Users can visualize variant frequencies in each region, compare communities with Spain's overall status, track how new variants displace dominant lineages, and quantify sequenced samples per territory. Weekly updates ensure the dashboard reflects the most recent genomic evidence available."
 short_description: "Web application monitoring SARS-CoV-2 variant spread across Spain, aggregating GISAID genomic data with weekly updates for public health surveillance."
-image: "/covidtag.png"
+image: "/images/projects/covidtag.png"
 technologies:
   - "R"
   - "Shiny"

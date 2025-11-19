@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+
+// Get all blog posts (excluding drafts) and sort by date, most recent first
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Sort by date (most recent first) and take only 6 posts
+const posts = allPosts
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 6);
+
+// Format date helper
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Helper to determine if post should show image
+function shouldShowImage(index: number): boolean {
+  return index !== 1 && index !== 4; // Posts 2 and 5 without image
+}
+
+// Bento grid layout classes - varying sizes for visual interest
+const bentoClasses = [
+  'md:col-span-2 md:row-span-2', // Large featured
+  'md:col-span-1 md:row-span-1', // Small
+  'md:col-span-1 md:row-span-1', // Small
+  'md:col-span-1 md:row-span-1', // Small
+  'md:col-span-1 md:row-span-1', // Small
+  'md:col-span-2 md:row-span-1', // Wide
+];
+---
+
+<section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">
+        Latest Blog Posts
+      </h2>
+      <p class="text-lg text-slate-600 font-sans max-w-2xl mx-auto">
+        Thoughts on bioinformatics, data analysis, and research
+      </p>
+    </div>
+
+    <!-- Bento Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+      {posts.map((post, index) => {
+        const showImage = shouldShowImage(index);
+        const isLarge = index === 0; // First post is large featured
+        const excerptLines = isLarge ? 4 : index === 5 ? 3 : 2;
+
+        return (
+          <article class={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-primary/40 flex flex-col ${bentoClasses[index]}`}>
+            {showImage && post.data.image && (
+              <div class={`overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50 ${isLarge ? 'h-64' : 'h-40'}`}>
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+            )}
+
+            <div class={`p-6 flex flex-col flex-grow ${!showImage ? 'pt-8' : ''}`}>
+              <time class="text-xs text-slate-500 font-sans uppercase tracking-wide">
+                {formatDate(post.data.date)}
+              </time>
+
+              <h3 class={`font-serif font-bold text-slate-900 mt-3 mb-3 group-hover:text-primary transition-colors duration-200 leading-snug ${isLarge ? 'text-2xl' : 'text-lg'}`}>
+                <a href={`/blog/${post.slug}`} class="hover:underline">
+                  {post.data.title}
+                </a>
+              </h3>
+
+              <p class={`text-slate-600 text-sm font-sans leading-relaxed mb-4 line-clamp-${excerptLines}`}>
+                {post.data.excerpt}
+              </p>
+
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  {post.data.tags.slice(0, 2).map((tag) => (
+                    <span class="px-2.5 py-1 bg-primary/10 text-primary-dark text-xs font-medium rounded-full border border-primary/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- View All Link -->
+    {posts.length > 0 && (
+      <div class="text-center mt-12">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors duration-200 shadow-md hover:shadow-lg"
+        >
+          View All Posts
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    )}
+  </div>
+</section>

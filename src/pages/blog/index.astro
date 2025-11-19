@@ -1,0 +1,171 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts (excluding drafts)
+const posts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Convert to unified format and sort by date
+const allPosts = posts
+  .map(post => ({
+    slug: post.slug,
+    title: post.data.title,
+    date: post.data.date,
+    excerpt: post.data.excerpt,
+    image: post.data.image,
+    tags: post.data.tags || [],
+    url: `/blog/${post.slug}`
+  }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Format date helper
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Group posts by year
+const postsByYear = allPosts.reduce((acc, post) => {
+  const year = new Date(post.date).getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(post);
+  return acc;
+}, {} as Record<number, typeof allPosts>);
+
+const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title="Blog - Francesc Català-Moll">
+  <article class="py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Back Button -->
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-8 transition-colors duration-200"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to home
+      </a>
+
+      <!-- Page Header -->
+      <header class="mb-12">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-4">
+          Blog
+        </h1>
+        <p class="text-lg text-slate-600 font-sans">
+          Thoughts on bioinformatics, data analysis, and research
+        </p>
+        <p class="text-sm text-slate-500 font-sans mt-2">
+          {allPosts.length} {allPosts.length === 1 ? 'post' : 'posts'}
+        </p>
+      </header>
+
+      <!-- Posts by Year -->
+      <div class="space-y-12">
+        {years.map((year) => (
+          <section>
+            <!-- Year Header -->
+            <div class="mb-6 pb-2 border-b-2 border-primary/20">
+              <h2 class="text-2xl font-serif font-bold text-slate-900">
+                {year}
+              </h2>
+              <p class="text-sm text-slate-500 mt-1">
+                {postsByYear[Number(year)].length} {postsByYear[Number(year)].length === 1 ? 'post' : 'posts'}
+              </p>
+            </div>
+
+            <!-- Posts List -->
+            <div class="space-y-6">
+              {postsByYear[Number(year)].map((post) => (
+                <a
+                  href={post.url}
+                  class="group block"
+                >
+                  <article class="relative pl-6 pr-4 py-5 border-l-4 border-slate-200 group-hover:border-primary transition-all duration-300 bg-white group-hover:bg-slate-50/50">
+                    <div class="flex flex-col md:flex-row gap-6">
+                      <!-- Content -->
+                      <div class="flex-1">
+                        <!-- Date + Quarto Badge -->
+                        <time class="text-xs text-slate-500 font-sans uppercase tracking-wide">
+                          {formatDate(post.date)}
+                        </time>
+
+                        <!-- Title -->
+                        <h3 class="text-lg font-serif font-bold text-slate-900 group-hover:text-primary transition-colors duration-200 mb-3 mt-2">
+                          {post.title}
+                          <svg class="inline-block w-4 h-4 ml-2 text-slate-400 group-hover:text-primary transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                        </h3>
+
+                        <!-- Excerpt -->
+                        <p class="text-sm text-slate-600 mb-3 leading-relaxed line-clamp-2">
+                          {post.excerpt}
+                        </p>
+
+                        <!-- Tags -->
+                        {post.tags && post.tags.length > 0 && (
+                          <div class="flex flex-wrap gap-2">
+                            {post.tags.slice(0, 3).map((tag) => (
+                              <span class="px-2.5 py-1 bg-primary/10 text-primary-dark text-xs font-medium rounded-full border border-primary/20">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      <!-- Image -->
+                      {post.image && (
+                        <div class="md:w-48 md:flex-shrink-0">
+                          <div class="h-32 md:h-full rounded-lg overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50">
+                            <img
+                              src={post.image}
+                              alt={post.title}
+                              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <!-- Footer Navigation -->
+      <footer class="mt-16 pt-8 border-t border-slate-200">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-slate-600 hover:text-primary transition-colors duration-200"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to home
+        </a>
+      </footer>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  /* Line clamp utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
