@@ -35,6 +35,17 @@ const metaCollection = defineCollection({
     title: z.string(),
     slug: z.string().optional(),
     description: z.string(),
+    tagline: z.string().optional(),
+    email: z.string().optional(),
+    location: z.string().optional(),
+    responseTime: z.string().optional(),
+    availabilityLabel: z.string().optional(),
+    availableText: z.string().optional(),
+    unavailableText: z.string().optional(),
+    workDays: z.array(z.number()).optional(), // 1=Monday, 7=Sunday
+    workHoursStart: z.number().optional(), // 0-23
+    workHoursEnd: z.number().optional(), // 0-23
+    timezone: z.string().optional(),
   }),
 });
 
