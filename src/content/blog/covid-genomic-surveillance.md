@@ -4,7 +4,7 @@ date: "2025-01-05"
 excerpt: "What we learned from tracking SARS-CoV-2 variants and how it shaped public health responses."
 image: "/images/blog/covid-genomics.jpg"
 tags: ["COVID-19", "genomics", "public-health"]
-draft: false
+draft: true
 ---
 
 The COVID-19 pandemic demonstrated the critical importance of real-time genomic surveillance. The unprecedented scale and speed of viral genome sequencing transformed our understanding of pathogen evolution and public health response.
