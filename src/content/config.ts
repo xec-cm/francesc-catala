@@ -50,6 +50,7 @@ const projectsCollection = defineCollection({
     github: z.string().optional(),
     demo: z.string().optional(),
     order: z.number(),
+    size: z.enum(['normal', 'wide', 'tall']).optional().default('normal'),
   }),
 });
 

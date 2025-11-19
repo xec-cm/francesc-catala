@@ -13,7 +13,8 @@ technologies:
   - "GitHub Actions"
 github: "https://github.com/MicrobialGenomics/covidapp"
 demo: "http://covidtag.paseq.org/"
-order: 3
+order: 2
+size: "wide"
 ---
 
 **CovidTag** is a public web application designed at IrsiCaixa to monitor the spread and replacement of **SARS-CoV-2 variants across Spain**. The platform aggregates SARS-CoV-2 genomic data from the **GISAID** repository and provides an up-to-date view of how viral lineages circulate in each autonomous community over time. :contentReference[oaicite:0]{index=0}

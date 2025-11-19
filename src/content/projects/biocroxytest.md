@@ -9,7 +9,7 @@ technologies:
   - "roxygen2"
 github: "https://github.com/xec-cm/biocroxytest"
 demo: "https://xec-cm.github.io/biocroxytest/"
-order: 2
+order: 3
 ---
 
 **biocroxytest** is an R/Bioconductor package designed to make it easier to work with **long-running tests** in Bioconductor software. Bioconductor’s build system enforces strict time limits on the standard test suite, which can make it difficult to include expensive integration tests, large-data checks, or performance-heavy workflows. biocroxytest addresses this by introducing a roxygen2-based workflow to define and maintain long tests alongside your code, without slowing down the daily builds.
