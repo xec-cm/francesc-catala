@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-primary/5">
   <div class="max-w-7xl mx-auto">
     <!-- Section Header -->
     <div class="text-center mb-16">
