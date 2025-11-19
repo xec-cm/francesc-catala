@@ -7,8 +7,6 @@ tags: ["COVID-19", "genomics", "public-health"]
 draft: false
 ---
 
-# Lessons from COVID-19 Genomic Surveillance
-
 The COVID-19 pandemic demonstrated the critical importance of real-time genomic surveillance. The unprecedented scale and speed of viral genome sequencing transformed our understanding of pathogen evolution and public health response.
 
 ## The Need for Genomic Surveillance

@@ -7,8 +7,6 @@ tags: ["Bioconductor", "R", "package-development"]
 draft: false
 ---
 
-# Creating Your First Bioconductor Package
-
 Contributing to Bioconductor is a great way to share your research tools with the community. Bioconductor is an open-source project that provides tools for the analysis of high-throughput genomic data. With over 2,000 packages, it's the go-to resource for computational biology.
 
 ## Why Create a Bioconductor Package?

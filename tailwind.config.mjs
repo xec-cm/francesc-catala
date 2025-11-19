@@ -1,3 +1,5 @@
+import typography from '@tailwindcss/typography'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -17,7 +19,37 @@ export default {
         sans: ['Inter', 'sans-serif'],
         handwritten: ['Caveat', 'cursive'],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: 'none',
+            color: '#334155',
+            p: {
+              marginTop: '1.5em',
+              marginBottom: '1.5em',
+            },
+            h2: {
+              marginTop: '3rem',
+              marginBottom: '1.25rem',
+            },
+            h3: {
+              marginTop: '2.5rem',
+              marginBottom: '1rem',
+            },
+            ul: {
+              marginTop: '1.5em',
+              marginBottom: '1.5em',
+            },
+            li: {
+              marginTop: '0.5em',
+              marginBottom: '0.5em',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    typography,
+  ],
 }

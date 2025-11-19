@@ -7,8 +7,6 @@ tags: ["AI", "drug-discovery", "machine-learning"]
 draft: false
 ---
 
-# AI-Driven Approaches in Drug Discovery
-
 Artificial intelligence is transforming how we discover and develop new therapeutics. The traditional drug discovery process is notoriously expensive, time-consuming, and has a high failure rate. AI promises to revolutionize this pipeline by predicting drug-target interactions, optimizing molecular properties, and accelerating clinical development.
 
 ## The Challenge of Drug Discovery
