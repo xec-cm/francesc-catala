@@ -1,5 +1,5 @@
 ---
-title: "Letting AI Pick the Right Differential Abundance Method, Taxon by Taxon"
+title: "Letting AI pick the right differential abundance method, taxon by taxon"
 date: "2025-11-19"
 excerpt: "Microbiome data are messy, and no single differential abundance method wins everywhere. Here I explore how AI could learn, taxon by taxon, which method is most reliable using modern benchmarks and simulated/semi-simulated datasets."
 image: "/images/blog/ai-differential-abundance.png"
@@ -83,7 +83,7 @@ If there is one recurring message, it is that there is no universal winner. Some
 
 This is exactly the kind of problem where machine learning tends to shine: a large, messy space of configurations with no simple analytic rule that says which method will be best under which combination of sparsity, effect size, sample size and design. But before we can train a model to make such decisions, we need reliable labels. We need to know, for many different simulated and semi-simulated scenarios, which method actually performs best for each taxon and why.
 
-## From toy simulations to rScreenshot from 2025-11-19 13-04-16ealistic synthetic microbiomes
+## From toy simulations to realistic synthetic microbiomes
 
 Early benchmarks often relied on relatively simple simulation schemes: counts generated from negative binomial distributions with fixed dispersion, sometimes with a compositional constraint tacked on at the end. These approaches were useful, but they missed several defining features of real microbiome data, such as structured zero inflation, strong feature–feature correlations and complex relationships with covariates.
 
@@ -116,14 +116,6 @@ For each taxon in each simulated world, we can then define a “winner” accord
 Now imagine concatenating all these taxon-level examples across thousands of simulated and semi-simulated datasets generated with SparseDOSSA2, metaSPARSim and semisynthetic spiking frameworks. That becomes a large supervised learning problem: the input is a vector of taxon-level and dataset-level characteristics, and the output is the DA method that historically worked best under those conditions. A random forest, gradient boosting model or other flexible classifier could learn mappings such as “extreme sparsity plus strong group-specific zeros favours this type of zero-inflated model”, or “moderate prevalence, balanced design and strong compositional effects favour that compositional method”.
 
 In this view, the current ecosystem of benchmarks and simulators becomes more than just a way to rank methods. It becomes a **training generator** for a meta-model that does not try to replace DA methods, but rather orchestrates them.
-
-## From thought experiment to practical workflow
-
-If such a model could be trained robustly—and that is a big “if”, requiring careful validation—it would fundamentally change how we think about DA pipelines in practice. Instead of picking one method for the whole table, we would characterize each taxon’s distribution and the overall study design, use the trained AI model to recommend a DA method per taxon, and then apply those methods accordingly before aggregating the results into a unified output.
-
-This immediately raises interesting statistical questions, especially around multiple testing and interpretability. Adjusting p-values across a set of taxa analysed with heterogeneous methods is not trivial, and we would need principled approaches to ensure that the global false discovery rate is still controlled. We would also need transparency: rules or feature-importance summaries that explain why the system tends to recommend a given method under certain conditions, echoing the “data characteristics” message from Weiss et al. (2017) and related work, but making it explicit and learnable rather than heuristic.
-
-Crucially, the viability of this idea hinges on the realism and diversity of the simulations used to train it. That is why the evolution from simple parametric simulators to frameworks like SparseDOSSA2, metaSPARSim and realistic semi-synthetic benchmarks is so important. If our synthetic worlds do not faithfully represent the range of real microbiome studies—different body sites, sequencing technologies, sample sizes, confounding structures—then the AI model will simply learn to be optimal in a toy universe.
 
 ## From thought experiment to practical workflow
 
