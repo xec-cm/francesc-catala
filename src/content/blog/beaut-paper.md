@@ -7,7 +7,7 @@ tags: ["microbiome", "bile-acids", "AI", "BEAUT", "paper-notes"]
 draft: false
 ---
 
-If you follow microbiome papers, you’ve probably seen some version of this sentence: *“bile acids are not just detergents; they’re signalling molecules that shape host physiology and disease.”* That’s true, but it hides a messy detail: once bile acids leave the liver and reach the gut, the microbiome starts to tinker with them in all sorts of ways. Microbes deconjugate, dehydroxylate, oxidise and otherwise remodel these molecules, creating a huge chemical zoo with very real consequences for metabolism, immunity and pathology. :contentReference[oaicite:0]{index=0}  
+If you follow microbiome papers, you've probably seen some version of this sentence: *"bile acids are not just detergents; they're signalling molecules that shape host physiology and disease."* That's true, but it hides a messy detail: once bile acids leave the liver and reach the gut, the microbiome starts to tinker with them in all sorts of ways. Microbes deconjugate, dehydroxylate, oxidise and otherwise remodel these molecules, creating a huge chemical zoo with very real consequences for metabolism, immunity and pathology.  
 
 We know these transformations are important, but we’ve had a surprisingly poor map of **who** in the microbiome does **what**. A few bile-salt hydrolases and classic enzymes are well characterised; the rest is a fog of “uncharacterised proteins” scattered across metagenomes. Connecting specific genes to specific bile-acid reactions at scale has been technically painful.
 
@@ -48,7 +48,7 @@ In other words, this new bile acid seems to work partly as a **community-level m
 
 A few things make BEAUT worth paying attention to:
 
-First, it demonstrates a realistic workflow for using AI **as a discovery engine** in microbiome biochemistry. Instead of starting from individual genes and working upwards, the authors start from a biological function – bile-acid metabolism – and let the model scan huge sequence spaces to propose candidates, which they then validate experimentally. :contentReference[oaicite:6]{index=6}  
+First, it demonstrates a realistic workflow for using AI **as a discovery engine** in microbiome biochemistry. Instead of starting from individual genes and working upwards, the authors start from a biological function – bile-acid metabolism – and let the model scan huge sequence spaces to propose candidates, which they then validate experimentally.  
 
 Second, the **HGBME database** turns this from a one-off paper into an ongoing resource. If you work with metagenomes or MAGs, you can imagine overlaying BEAUT predictions onto your datasets to see which bile-acid enzymes are enriched in particular cohorts, disease states or interventions.
 

@@ -50,7 +50,7 @@ const bentoClasses = [
       {posts.map((post, index) => {
         const showImage = shouldShowImage(index);
         const isLarge = index === 0; // First post is large featured
-        const excerptLines = isLarge ? 4 : index === 5 ? 3 : 2;
+        const excerptClampClass = isLarge ? 'line-clamp-4' : index === 5 ? 'line-clamp-3' : 'line-clamp-2';
 
         return (
           <article class={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-primary/40 flex flex-col ${bentoClasses[index]}`}>
@@ -76,7 +76,7 @@ const bentoClasses = [
                 </a>
               </h3>
 
-              <p class={`text-slate-600 text-sm font-sans leading-relaxed mb-4 line-clamp-${excerptLines}`}>
+              <p class={`text-slate-600 text-sm font-sans leading-relaxed mb-4 ${excerptClampClass}`}>
                 {post.data.excerpt}
               </p>
 
