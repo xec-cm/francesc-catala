@@ -6,31 +6,16 @@ const allPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
 });
 
-// Sort by date (most recent first) and take only 6 posts
+// Sort by date (most recent first) and take only 3 posts
 const posts = allPosts
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-  .slice(0, 6);
+  .slice(0, 3);
 
 // Format date helper
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
-
-// Helper to determine if post should show image
-function shouldShowImage(index: number): boolean {
-  return index !== 1 && index !== 4; // Posts 2 and 5 without image
-}
-
-// Bento grid layout classes - varying sizes for visual interest
-const bentoClasses = [
-  'md:col-span-2 md:row-span-2', // Large featured
-  'md:col-span-1 md:row-span-1', // Small
-  'md:col-span-1 md:row-span-1', // Small
-  'md:col-span-1 md:row-span-1', // Small
-  'md:col-span-1 md:row-span-1', // Small
-  'md:col-span-2 md:row-span-1', // Wide
-];
 ---
 
 <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
@@ -45,54 +30,52 @@ const bentoClasses = [
       </p>
     </div>
 
-    <!-- Bento Grid Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
-      {posts.map((post, index) => {
-        const showImage = shouldShowImage(index);
-        const isLarge = index === 0; // First post is large featured
-        const excerptClampClass = isLarge ? 'line-clamp-4' : index === 5 ? 'line-clamp-3' : 'line-clamp-2';
+    <!-- Grid Layout - Single Row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {posts.map((post) => (
+        <article class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-primary/40 flex flex-col">
+          {post.data.image && (
+            <div class="overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50 h-48 flex-shrink-0">
+              <img
+                src={post.data.image}
+                alt={post.data.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+          )}
 
-        return (
-          <article class={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-200 hover:border-primary/40 flex flex-col ${bentoClasses[index]}`}>
-            {showImage && post.data.image && (
-              <div class={`overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50 ${isLarge ? 'h-64' : 'h-40'}`}>
-                <img
-                  src={post.data.image}
-                  alt={post.data.title}
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  loading="lazy"
-                />
+          <div class="p-6 flex flex-col flex-1">
+            <time class="text-xs text-slate-500 font-sans uppercase tracking-wide">
+              {formatDate(post.data.date)}
+            </time>
+
+            <h3 class="font-serif font-bold text-slate-900 mt-3 mb-3 group-hover:text-primary transition-colors duration-200 leading-snug text-xl line-clamp-2">
+              <a href={`/blog/${post.slug}`} class="hover:underline">
+                {post.data.title}
+              </a>
+            </h3>
+
+            <p class="text-slate-600 text-sm font-sans leading-relaxed mb-4 line-clamp-3 flex-1">
+              {post.data.excerpt}
+            </p>
+
+            {post.data.tags && post.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 mt-auto">
+                {post.data.tags.slice(0, 2).map((tag) => (
+                  <a
+                    href={`/blog/tag/${tag}`}
+                    class="px-2.5 py-1 bg-primary/10 text-primary-dark text-xs font-medium rounded-full border border-primary/20 hover:bg-primary hover:text-white transition-colors duration-200"
+                    onclick="event.stopPropagation()"
+                  >
+                    {tag}
+                  </a>
+                ))}
               </div>
             )}
-
-            <div class={`p-6 flex flex-col flex-grow ${!showImage ? 'pt-8' : ''}`}>
-              <time class="text-xs text-slate-500 font-sans uppercase tracking-wide">
-                {formatDate(post.data.date)}
-              </time>
-
-              <h3 class={`font-serif font-bold text-slate-900 mt-3 mb-3 group-hover:text-primary transition-colors duration-200 leading-snug ${isLarge ? 'text-2xl' : 'text-lg'}`}>
-                <a href={`/blog/${post.slug}`} class="hover:underline">
-                  {post.data.title}
-                </a>
-              </h3>
-
-              <p class={`text-slate-600 text-sm font-sans leading-relaxed mb-4 ${excerptClampClass}`}>
-                {post.data.excerpt}
-              </p>
-
-              {post.data.tags && post.data.tags.length > 0 && (
-                <div class="flex flex-wrap gap-2 mt-auto">
-                  {post.data.tags.slice(0, 2).map((tag) => (
-                    <span class="px-2.5 py-1 bg-primary/10 text-primary-dark text-xs font-medium rounded-full border border-primary/20">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </article>
-        );
-      })}
+          </div>
+        </article>
+      ))}
     </div>
 
     <!-- View All Link -->

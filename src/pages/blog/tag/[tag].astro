@@ -1,11 +1,27 @@
 ---
-import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
 
-// Get all blog posts (excluding drafts)
-const posts = await getCollection('blog', ({ data }) => {
-  return data.draft !== true;
-});
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
+
+  // Get all unique tags
+  const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
+
+  return allTags.map((tag) => {
+    const filteredPosts = posts.filter((post) =>
+      post.data.tags?.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts, tag },
+    };
+  });
+}
+
+const { posts, tag } = Astro.props;
 
 // Convert to unified format and sort by date
 const allPosts = posts
@@ -37,16 +53,41 @@ const postsByYear = allPosts.reduce((acc, post) => {
 }, {} as Record<number, typeof allPosts>);
 
 const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
+
+// Capitalize tag for display
+const displayTag = tag.split('-').map(word =>
+  word.charAt(0).toUpperCase() + word.slice(1)
+).join(' ');
 ---
 
-<Layout title="Blog - Francesc Català-Moll">
+<Layout
+  title={`Posts tagged "${displayTag}" - Francesc Català-Moll`}
+  description={`Explore all blog posts about ${displayTag}`}
+>
   <article class="py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
 
       <!-- Page Header -->
       <header class="mb-12">
+        <!-- Back to Blog -->
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 text-slate-600 hover:text-primary transition-colors duration-200 mb-6"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to all posts
+        </a>
+
+        <div class="flex items-center gap-3 mb-4">
+          <span class="px-4 py-2 bg-primary/10 text-primary-dark text-sm font-medium rounded-lg border border-primary/20">
+            {displayTag}
+          </span>
+        </div>
+
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-4">
-          Blog
+          Posts tagged "{displayTag}"
         </h1>
         <p class="text-lg text-slate-600 font-sans">
           Thoughts on bioinformatics, data analysis, and research
@@ -78,20 +119,17 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
                   class="group block"
                 >
                   <article class="relative pl-6 pr-4 py-5 border-l-4 border-slate-200 group-hover:border-primary transition-all duration-300 bg-white group-hover:bg-slate-50/50">
-                    <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <!-- Content -->
-                      <div class="flex-1">
-                        <!-- Date + Quarto Badge -->
-                        <time class="text-xs text-slate-500 font-sans uppercase tracking-wide">
+                      <div class="flex-1 min-w-0">
+                        <!-- Date -->
+                        <time class="text-xs text-slate-500 uppercase tracking-wider font-medium">
                           {formatDate(post.date)}
                         </time>
 
                         <!-- Title -->
-                        <h3 class="text-lg font-serif font-bold text-slate-900 group-hover:text-primary transition-colors duration-200 mb-3 mt-2">
+                        <h3 class="text-xl font-serif font-bold text-slate-900 mt-2 mb-2 group-hover:text-primary transition-colors duration-200 leading-snug">
                           {post.title}
-                          <svg class="inline-block w-4 h-4 ml-2 text-slate-400 group-hover:text-primary transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
                         </h3>
 
                         <!-- Excerpt -->
@@ -102,13 +140,17 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
                         <!-- Tags -->
                         {post.tags && post.tags.length > 0 && (
                           <div class="flex flex-wrap gap-2">
-                            {post.tags.slice(0, 3).map((tag) => (
+                            {post.tags.slice(0, 3).map((postTag) => (
                               <a
-                                href={`/blog/tag/${tag}`}
-                                class="px-2.5 py-1 bg-primary/10 text-primary-dark text-xs font-medium rounded-full border border-primary/20 hover:bg-primary hover:text-white transition-colors duration-200"
+                                href={`/blog/tag/${postTag}`}
+                                class={`px-2.5 py-1 text-xs font-medium rounded-full border transition-colors duration-200 ${
+                                  postTag === tag
+                                    ? 'bg-primary text-white border-primary'
+                                    : 'bg-primary/10 text-primary-dark border-primary/20 hover:bg-primary hover:text-white'
+                                }`}
                                 onclick="event.stopPropagation(); event.preventDefault(); window.location.href=this.href;"
                               >
-                                {tag}
+                                {postTag}
                               </a>
                             ))}
                           </div>
@@ -140,25 +182,15 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
       <!-- Footer Navigation -->
       <footer class="mt-16">
         <a
-          href="/"
+          href="/blog"
           class="inline-flex items-center gap-2 text-slate-600 hover:text-primary transition-colors duration-200"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
-          Back to home
+          Back to all posts
         </a>
       </footer>
     </div>
   </article>
 </Layout>
-
-<style>
-  /* Line clamp utility */
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>

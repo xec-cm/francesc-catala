@@ -6,12 +6,21 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article';
 }
 
 const {
-  title = 'Francesc Català - Bioinformatics & Microbiome Analytics',
-  description = 'Personal academic website of Francesc Català, specializing in bioinformatics and microbiome analytics.',
+  title = 'Francesc Català-Moll - Bioinformatics & Microbiome Analytics',
+  description = 'Bioinformatician specializing in microbiome research, epigenetics, and multi-omics integration. Using AI to uncover microbiome-immune system interactions.',
+  image = '/og-image.jpg',
+  type = 'website',
 } = Astro.props;
+
+// Construct full URL for Open Graph image
+const siteURL = Astro.site || new URL('http://localhost:4321');
+const canonicalURL = new URL(Astro.url.pathname, siteURL);
+const imageURL = new URL(image, siteURL);
 ---
 
 <!doctype html>
@@ -23,6 +32,29 @@ const {
     <link rel="icon" type="image/x-icon" href="/1-2962cfe1.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Francesc Català-Moll" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
+    <meta name="twitter:creator" content="@fcatalamoll" />
+    <meta name="twitter:site" content="@fcatalamoll" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
