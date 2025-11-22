@@ -13,20 +13,6 @@ const blogCollection = defineCollection({
   }),
 });
 
-// Publications collection schema
-const publicationsCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    authors: z.string(),
-    journal: z.string(),
-    year: z.number(),
-    doi: z.string(),
-    link: z.string(),
-    tags: z.array(z.string()).optional(),
-  }),
-});
-
 // Meta/Pages collection schema
 // This collection will hold metadata for static pages like About, Contact, etc.
 const metaCollection = defineCollection({
@@ -68,7 +54,6 @@ const projectsCollection = defineCollection({
 // Export collections
 export const collections = {
   blog: blogCollection,
-  publications: publicationsCollection,
   meta: metaCollection,
   projects: projectsCollection,
 };

@@ -13,6 +13,14 @@ export default {
           dark: '#3d4435',
           hover: '#4f5c47',
         },
+        secondary: {
+          DEFAULT: '#F0EFEB', // Light warm beige
+          dark: '#D6D4CE',
+        },
+        accent: {
+          DEFAULT: '#C89F78', // Muted earth tone
+          hover: '#B08968',
+        },
       },
       fontFamily: {
         serif: ['Playfair Display', 'serif'],

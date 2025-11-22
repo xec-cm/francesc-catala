@@ -1,24 +1,24 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
-  type?: 'website' | 'article';
+  type?: "website" | "article";
 }
 
 const {
-  title = 'Francesc Català-Moll - Bioinformatics & Microbiome Analytics',
-  description = 'Bioinformatician specializing in microbiome research, epigenetics, and multi-omics integration. Using AI to uncover microbiome-immune system interactions.',
-  image = '/og-image.jpg',
-  type = 'website',
+  title = "Francesc Català-Moll - Bioinformatics & Microbiome Analytics",
+  description = "Bioinformatician specializing in microbiome research, epigenetics, and multi-omics integration. Using AI to uncover microbiome-immune system interactions.",
+  image = "/og-image.jpg",
+  type = "website",
 } = Astro.props;
 
 // Construct full URL for Open Graph image
-const siteURL = Astro.site || new URL('http://localhost:4321');
+const siteURL = Astro.site || new URL("http://localhost:4321");
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
 const imageURL = new URL(image, siteURL);
 ---
@@ -73,39 +73,81 @@ const imageURL = new URL(image, siteURL);
     </main>
 
     <Footer />
+    <script>
+      // Scroll reveal animation
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-visible");
+            observer.unobserve(entry.target); // Only animate once
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const revealElements = document.querySelectorAll(".reveal");
+        revealElements.forEach((el) => observer.observe(el));
+      });
+    </script>
   </body>
 </html>
 
 <style is:global>
   /* Global styles */
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    background-color: white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Playfair Display", serif;
   }
 
   .font-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
   }
 
   .font-sans {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .font-handwritten {
-    font-family: 'Caveat', cursive;
+    font-family: "Caveat", cursive;
   }
 
   /* Prose styles for markdown content */
   .prose {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     color: #475569;
   }
 
   .prose h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 700;
     color: #1e293b;
     font-size: 2rem;
@@ -117,7 +159,7 @@ const imageURL = new URL(image, siteURL);
   }
 
   .prose h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 700;
     color: #3d4435;
     font-size: 1.5rem;
@@ -127,7 +169,7 @@ const imageURL = new URL(image, siteURL);
   }
 
   .prose h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 700;
     color: #1e293b;
     font-size: 1.25rem;
@@ -144,7 +186,8 @@ const imageURL = new URL(image, siteURL);
     font-size: 1.125rem;
   }
 
-  .prose ul, .prose ol {
+  .prose ul,
+  .prose ol {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     padding-left: 1.75em;
@@ -201,7 +244,7 @@ const imageURL = new URL(image, siteURL);
     border-radius: 0.25rem;
     font-size: 0.875rem;
     border: 1px solid rgba(97, 112, 86, 0.2);
-    font-family: 'Courier New', monospace;
+    font-family: "Courier New", monospace;
   }
 
   .prose code::before,
@@ -269,5 +312,30 @@ const imageURL = new URL(image, siteURL);
 
   .prose tr:hover {
     background-color: #f8fafc;
+  }
+
+  /* Scroll reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered delays for children if needed */
+  .reveal-delay-100 {
+    transition-delay: 100ms;
+  }
+  .reveal-delay-200 {
+    transition-delay: 200ms;
+  }
+  .reveal-delay-300 {
+    transition-delay: 300ms;
   }
 </style>
