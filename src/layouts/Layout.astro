@@ -63,6 +63,9 @@ const imageURL = new URL(image, siteURL);
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Preload hero image for faster initial render -->
+    <link rel="preload" href="/images/hero/hero.svg" as="image" />
   </head>
   <body class="min-h-screen bg-white text-slate-900 font-sans flex flex-col">
     <Header />
