@@ -1,4 +1,11 @@
 Changelog
+### [0.0.15](https://github.com/xec-cm/francesc-catala/compare/v0.0.14...v0.0.15) (2025-11-24)
+
+
+### Bug Fixes
+
+* pass WEB3FORMS_ACCESS_KEY to docker build ([238e7bb](https://github.com/xec-cm/francesc-catala/commit/238e7bbecba525996da1910421c8f66a8f12feb2))
+
 ### [0.0.14](https://github.com/xec-cm/francesc-catala/compare/v0.0.13...v0.0.14) (2025-11-24)
 
 ### [0.0.13](https://github.com/xec-cm/francesc-catala/compare/v0.0.12...v0.0.13) (2025-11-24)
