@@ -59,7 +59,21 @@ To deploy on a fresh server (e.g., AWS EC2, DigitalOcean Droplet):
 1.  **Install Docker & Docker Compose**:
     Ensure your server has Docker installed.
 
-2.  **Deploy**:
+2.  **Configure Environment Variables**:
+    Create a `.env` file on your server with required variables:
+
+    ```bash
+    # Copy the example file
+    cp .env.example .env
+    
+    # Edit with your actual values
+    nano .env
+    ```
+
+    Required variables:
+    -   `WEB3FORMS_ACCESS_KEY`: Your Web3Forms API key for contact form functionality.
+
+3.  **Deploy**:
     Copy the `docker-compose.yml` file to your server and run:
 
     ```bash
@@ -71,7 +85,7 @@ To deploy on a fresh server (e.g., AWS EC2, DigitalOcean Droplet):
     -   **Web App**: Pulled from Docker Hub.
     -   **Watchtower**: Monitoring for updates.
 
-3.  **Automatic Updates**:
+4.  **Automatic Updates**:
     Watchtower checks for new images every minute. When you push code to GitHub, the Action builds a new image, and Watchtower automatically pulls it and restarts the web container on your server.
 
 ### Configuration

@@ -32,6 +32,8 @@ services:
     image: francesccatala/francesc-catala:latest
     container_name: francesc-catala_web
     restart: always
+    env_file:
+      - .env  # Load environment variables from .env file on the server
     labels:
       - "traefik.enable=true"
       # HTTP Router
