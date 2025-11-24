@@ -1,4 +1,11 @@
 Changelog
+### [0.0.13](https://github.com/xec-cm/francesc-catala/compare/v0.0.12...v0.0.13) (2025-11-24)
+
+
+### Bug Fixes
+
+* update robots.txt to point to sitemap-index.xml ([be51aa9](https://github.com/xec-cm/francesc-catala/commit/be51aa9f675160eaf82ba92f2dd6f68bd153ffc0))
+
 ### [0.0.12](https://github.com/xec-cm/francesc-catala/compare/v0.0.11...v0.0.12) (2025-11-24)
 
 ### [0.0.11](https://github.com/xec-cm/francesc-catala/compare/v0.0.10...v0.0.11) (2025-11-24)
