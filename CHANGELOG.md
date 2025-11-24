@@ -1,4 +1,11 @@
 Changelog
+### [0.0.4](https://github.com/xec-cm/francesc-catala/compare/v0.0.3...v0.0.4) (2025-11-24)
+
+
+### Performance Improvements
+
+* optimize project SVG images ([0eed54d](https://github.com/xec-cm/francesc-catala/commit/0eed54dffdf0d90e02806b0b375895b7cc0d625d))
+
 ### 0.0.3 (2025-11-24)
 
 
