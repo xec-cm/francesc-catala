@@ -43,9 +43,10 @@ type Paragraph = TextParagraph | CustomParagraph;
           class="w-[20rem] h-[20rem] sm:w-[26rem] sm:h-[26rem] lg:w-[30rem] lg:h-[30rem]"
         >
           <img
+            id="hero-image"
             src={heroData.image.src}
             alt={heroData.image.alt}
-            class="w-full h-full object-contain transition-opacity duration-500"
+            class="w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-out"
           />
         </div>
       </div>
@@ -244,12 +245,24 @@ type Paragraph = TextParagraph | CustomParagraph;
           stroke-linejoin="round"
           stroke-width="2"
           d="M19 9l-7 7-7-7"></path>
+        ```
       </svg>
     </button>
   </div>
 </section>
 
 <script>
+  // Hero image delayed fade-in
+  const heroImage = document.getElementById(
+    "hero-image",
+  ) as HTMLImageElement | null;
+  if (heroImage) {
+    setTimeout(() => {
+      heroImage.classList.remove("opacity-0");
+      heroImage.classList.add("opacity-100");
+    }, 500); // 500ms delay
+  }
+
   // Typing effect
   const typingText = document.getElementById("typing-text");
   const typedContent = document.getElementById("typed-content");
