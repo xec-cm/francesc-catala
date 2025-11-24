@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: francesccatala/francesccatala:latest
+          tags: francesccatala/francesc-catala:latest

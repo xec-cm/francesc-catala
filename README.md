@@ -45,7 +45,7 @@ The project includes a GitHub Action (`.github/workflows/docker-publish.yml`) th
 
 1.  **Build**: Compiles the Astro site.
 2.  **Containerize**: Builds a Docker image.
-3.  **Push**: Pushes the image to Docker Hub (`francesccatala/francesccatala:latest`).
+3.  **Push**: Pushes the image to Docker Hub (`francesccatala/francesc-catala:latest`).
 
 **Required Secrets:**
 To enable the pipeline, add these secrets to your GitHub Repository:

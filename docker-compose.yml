@@ -29,8 +29,8 @@ services:
 
   # Web Application
   web:
-    image: francesccatala/francesccatala:latest
-    container_name: francesccatala_web
+    image: francesccatala/francesc-catala:latest
+    container_name: francesc-catala_web
     restart: always
     labels:
       - "traefik.enable=true"
