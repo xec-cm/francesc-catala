@@ -13,6 +13,7 @@
     "release:patch": "standard-version --release-as patch"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.8",
