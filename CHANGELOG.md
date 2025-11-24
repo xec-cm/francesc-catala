@@ -1,4 +1,16 @@
 Changelog
+### [0.0.7](https://github.com/xec-cm/francesc-catala/compare/v0.0.5...v0.0.7) (2025-11-24)
+
+
+### Bug Fixes
+
+* improve hero image reveal animation with smooth fade-in ([e974a54](https://github.com/xec-cm/francesc-catala/commit/e974a549ff1d68b3b236937c024692973446d29b))
+
+
+### Performance Improvements
+
+* reduce hero image delay from 500ms to 300ms ([dd5ed4a](https://github.com/xec-cm/francesc-catala/commit/dd5ed4a4be712916267be1211567e779c20751d8))
+
 ### [0.0.6](https://github.com/xec-cm/francesc-catala/compare/v0.0.5...v0.0.6) (2025-11-24)
 
 
