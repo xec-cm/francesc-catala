@@ -1,4 +1,6 @@
 Changelog
+### [0.0.14](https://github.com/xec-cm/francesc-catala/compare/v0.0.13...v0.0.14) (2025-11-24)
+
 ### [0.0.13](https://github.com/xec-cm/francesc-catala/compare/v0.0.12...v0.0.13) (2025-11-24)
 
 
