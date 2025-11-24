@@ -6,7 +6,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "release:patch": "standard-version --release-as patch"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -14,5 +18,8 @@
     "astro": "^5.15.8",
     "leaflet": "^1.9.4",
     "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "standard-version": "^9.5.0"
   }
 }

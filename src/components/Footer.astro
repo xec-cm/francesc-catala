@@ -1,5 +1,6 @@
 ---
 import heroData from "../data/hero.json";
+import pkg from "../../package.json";
 
 const currentYear = new Date().getFullYear();
 
@@ -87,6 +88,16 @@ const navLinks = [
           ))
         }
       </div>
+    </div>
+
+    <!-- Copyright and Version -->
+    <div class="border-t border-slate-200 pt-6 text-center">
+      <p class="text-slate-500 text-sm">
+        © {currentYear} Francesc Català-Moll. All rights reserved.
+      </p>
+      <p class="text-slate-400 text-xs mt-2">
+        v{pkg.version}
+      </p>
     </div>
   </div>
 </footer>
