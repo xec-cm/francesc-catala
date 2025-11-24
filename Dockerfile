@@ -7,6 +7,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+ARG WEB3FORMS_ACCESS_KEY
+ENV WEB3FORMS_ACCESS_KEY=$WEB3FORMS_ACCESS_KEY
 RUN npm run build
 
 # Serve Stage

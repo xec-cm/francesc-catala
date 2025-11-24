@@ -28,3 +28,5 @@ jobs:
           context: .
           push: true
           tags: francesccatala/francesc-catala:latest
+          build-args: |
+            WEB3FORMS_ACCESS_KEY=${{ secrets.WEB3FORMS_ACCESS_KEY }}
