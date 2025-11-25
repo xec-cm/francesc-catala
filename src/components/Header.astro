@@ -13,20 +13,27 @@ const navLinks = [
 ];
 ---
 
-<header id="main-header" class={`fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md transition-transform duration-300 ${className}`}>
+<header
+  id="main-header"
+  class={`fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md transition-transform duration-300 ${className}`}
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
-
       <!-- Left side: Logo + Name -->
       <div class="flex items-center">
         <!-- Logo from .ico file - clickable to home -->
-        <a href="/" class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity duration-200">
+        <a
+          href="/"
+          class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity duration-200"
+        >
           <img
             src="/1-2962cfe1.ico"
             alt="Francesc Català-Moll logo"
             class="w-10 h-10 sm:w-12 sm:h-12"
           />
-          <span class="text-xl sm:text-2xl font-handwritten font-bold text-primary">
+          <span
+            class="text-xl sm:text-2xl font-handwritten font-bold text-primary"
+          >
             Francesc Català-Moll
           </span>
         </a>
@@ -34,25 +41,26 @@ const navLinks = [
 
       <!-- Right side: Navigation + Buttons -->
       <div class="flex items-center gap-6">
-
         <!-- Navigation links - hidden on mobile -->
         <nav class="hidden lg:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <a
-              href={link.href}
-              class="text-2xl font-handwritten text-black hover:text-slate-700 transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="text-2xl font-handwritten text-black hover:text-slate-700 transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ))
+          }
         </nav>
 
         <!-- Action buttons -->
         <div class="flex items-center gap-3">
-          <!-- Contact me - Primary button -->
+          <!-- Contact me - Primary button (Desktop only) -->
           <a
             href="/contact"
-            class="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors duration-200"
+            class="hidden lg:inline-flex items-center px-4 py-2 text-base font-medium text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors duration-200"
           >
             Contact me
           </a>
@@ -63,8 +71,17 @@ const navLinks = [
             class="lg:hidden p-2 text-slate-600 hover:text-slate-900 transition-colors"
             aria-label="Toggle menu"
           >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
@@ -73,49 +90,61 @@ const navLinks = [
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md">
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md"
+  >
     <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="text-xl font-handwritten text-black hover:text-slate-700 transition-colors duration-200 py-2"
-        >
-          {link.label}
-        </a>
-      ))}
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-xl font-handwritten text-black hover:text-slate-700 transition-colors duration-200 py-2"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <!-- Contact me - Mobile menu item -->
+      <a
+        href="/contact"
+        class="inline-flex justify-center items-center px-4 py-2 mt-2 text-base font-medium text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors duration-200 w-full"
+      >
+        Contact me
+      </a>
     </nav>
   </div>
 </header>
 
 <script>
   // Mobile menu toggle
-  const menuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const menuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-  menuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+  menuButton?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
   });
 
   // Header hide/show on scroll
   let lastScrollY = window.scrollY;
-  const header = document.getElementById('main-header');
+  const header = document.getElementById("main-header");
 
   function handleScroll() {
     const currentScrollY = window.scrollY;
 
     if (currentScrollY <= 0) {
       // At the top - always show header
-      header?.classList.remove('-translate-y-full');
+      header?.classList.remove("-translate-y-full");
     } else if (currentScrollY > lastScrollY) {
       // Scrolling down - hide header
-      header?.classList.add('-translate-y-full');
+      header?.classList.add("-translate-y-full");
     } else {
       // Scrolling up - show header
-      header?.classList.remove('-translate-y-full');
+      header?.classList.remove("-translate-y-full");
     }
 
     lastScrollY = currentScrollY;
   }
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
 </script>

@@ -5,12 +5,12 @@
   "description": [
     {
       "type": "text",
-      "content": "I'm a bioinformatician specialising in microbiome research, epigenetics, and multi-omics integration. My work focuses on understanding how microbial communities and host biology intersect to shape immune responses, infectious disease dynamics, and clinical outcomes."
+      "content": "I’m a bioinformatician specialising in microbiome research, epigenetics and multi-omics integration. I study how microbial communities interact with the immune system and influence infection, inflammation and health, translating complex biological signals into clear, interpretable insights."
     },
     {
       "type": "custom",
       "parts": [
-        "Over the years I've built and maintained reproducible analytical workflows, led the bioinformatics efforts of a microbial genomics research group, and contributed to the R/Bioconductor ecosystem as a developer and maintainer of packages such as ",
+        "I build reproducible analytical pipelines and scalable data workflows that support both academic teams and industry partners. My experience covers microbial genomics, resistome profiling, epigenomics and multi-omic integration, along with the development of R/Bioconductor tools such as ",
         {
           "type": "link",
           "text": "dar",
@@ -21,13 +21,12 @@
           "type": "link",
           "text": "biocroxytest",
           "url": "https://xec-cm.github.io/biocroxytest/"
-        },
-        ". I enjoy turning noisy, high-dimensional data into clear, interpretable results for biologists and clinicians."
+        }
       ]
     },
     {
       "type": "text",
-      "content": "I am now expanding this foundation into the field of artificial intelligence, using machine learning to dissect the complex relationship between the microbiome and the host immune system. By combining robust statistics, multi-omic data and modern AI methods, my goal is to reveal patterns that are invisible to classical analysis and bring us closer to a mechanistic understanding of human health."
+      "content": "I also apply machine learning and modern AI to reveal patterns that classical analyses overlook—from predictive modelling to biomarker discovery. My goal is to provide actionable, data-driven evidence that accelerates research, strengthens decision-making and drives innovation in infectious diseases, immunology and precision health."
     }
   ],
   "image": {

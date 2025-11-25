@@ -1,10 +1,10 @@
 ---
 title: "Letting AI pick the right differential abundance method, taxon by taxon"
-date: "2025-11-19"
+date: "2025-06-19"
 excerpt: "Microbiome data are messy, and no single differential abundance method wins everywhere. Here I explore how AI could learn, taxon by taxon, which method is most reliable using modern benchmarks and simulated/semi-simulated datasets."
 image: "/images/blog/ai-differential-abundance.png"
 tags: ["microbiome", "bioinformatics", "differential-abundance", "machine-learning", "simulation"]
-draft: false
+draft: true
 ---
 
 In microbiome analysis, differential abundance (DA) has become a kind of statistical Rorschach test. Give the same dataset to several popular methods—DESeq2, edgeR, ALDEx2, metagenomeSeq, LefSe, Wilcoxon-based approaches—and you will often get overlapping but substantially different sets of “significant” taxa. Large benchmarks have made that painfully clear: methods disagree a lot more than we’d like, and error control is often far from ideal (Nearing et al., 2022).
