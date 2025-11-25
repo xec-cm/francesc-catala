@@ -1,4 +1,12 @@
 Changelog
+### [0.0.17](https://github.com/xec-cm/francesc-catala/compare/v0.0.16...v0.0.17) (2025-11-25)
+
+
+### Features
+
+* add 404 page ([6f9cd82](https://github.com/xec-cm/francesc-catala/commit/6f9cd82de938ca7d9e4df1c528c1e1feb9b5ab09))
+* improve mobile responsiveness and create 404 page ([b1c7faa](https://github.com/xec-cm/francesc-catala/commit/b1c7faa6a4fefe36d1ff8ef4886467e49f434360))
+
 ### [0.0.16](https://github.com/xec-cm/francesc-catala/compare/v0.0.15...v0.0.16) (2025-11-25)
 
 
