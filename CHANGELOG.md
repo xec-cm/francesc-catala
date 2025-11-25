@@ -1,4 +1,11 @@
 Changelog
+### [0.0.16](https://github.com/xec-cm/francesc-catala/compare/v0.0.15...v0.0.16) (2025-11-25)
+
+
+### Bug Fixes
+
+* improve mobile responsiveness and sizing ([2a08c46](https://github.com/xec-cm/francesc-catala/commit/2a08c46cb76b597992de4ecd82d97098f41ec6ee))
+
 ### [0.0.15](https://github.com/xec-cm/francesc-catala/compare/v0.0.14...v0.0.15) (2025-11-24)
 
 
