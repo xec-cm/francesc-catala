@@ -1,4 +1,13 @@
 Changelog
+### [0.0.19](https://github.com/xec-cm/francesc-catala/compare/v0.0.18...v0.0.19) (2025-11-26)
+
+
+### Bug Fixes
+
+* change blog post date from future to current to fix production visibility ([7ed2eee](https://github.com/xec-cm/francesc-catala/commit/7ed2eee464e4423489fb8473afb3df7655b4d274))
+* remove duplicate content from AI differential abundance blog post ([c28a962](https://github.com/xec-cm/francesc-catala/commit/c28a962ed3ede4b3fe8773e0b570de755b795d9e))
+* restore correct blog post date to June 19, 2025 ([87229b8](https://github.com/xec-cm/francesc-catala/commit/87229b8087f3ce804ac59c50ee2b6f5f346b8f1c))
+
 ### [0.0.18](https://github.com/xec-cm/francesc-catala/compare/v0.0.17...v0.0.18) (2025-11-26)
 
 ### [0.0.17](https://github.com/xec-cm/francesc-catala/compare/v0.0.16...v0.0.17) (2025-11-25)
