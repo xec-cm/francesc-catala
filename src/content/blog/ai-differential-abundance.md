@@ -1,6 +1,6 @@
 ---
 title: "Letting AI pick the right differential abundance method, taxon by taxon"
-date: "2024-11-26"
+date: "2025-06-19"
 excerpt: "Microbiome data are messy, and no single differential abundance method wins everywhere. Here I explore how AI could learn, taxon by taxon, which method is most reliable using modern benchmarks and simulated/semi-simulated datasets."
 image: "/images/blog/ai-differential-abundance.png"
 tags: ["microbiome", "bioinformatics", "differential-abundance", "machine-learning", "simulation"]
