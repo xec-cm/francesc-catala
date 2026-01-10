@@ -19,7 +19,11 @@ const {
 
 // Construct full URL for Open Graph image
 const siteURL = Astro.site || new URL("http://localhost:4321");
-const canonicalURL = new URL(Astro.url.pathname, siteURL);
+let canonicalPath = Astro.url.pathname;
+if (!canonicalPath.endsWith("/")) {
+  canonicalPath += "/";
+}
+const canonicalURL = new URL(canonicalPath, siteURL);
 const imageURL = new URL(image, siteURL);
 ---
 
