@@ -38,7 +38,7 @@ const focusTags = [
 ---
 
 <section
-  class="relative px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-5rem)] pt-6 sm:pt-10 pb-12 sm:pb-16 flex items-center overflow-hidden"
+  class="relative px-4 sm:px-6 lg:px-8 pt-4 sm:pt-8 lg:pt-10 pb-8 sm:pb-12 lg:pb-16 lg:min-h-[calc(100vh-5rem)] flex items-center overflow-hidden"
 >
   <div
     class="absolute inset-0 -z-10 bg-gradient-to-br from-secondary via-white to-secondary/50 opacity-60"
@@ -50,9 +50,9 @@ const focusTags = [
   </div>
 
   <div class="max-w-7xl mx-auto w-full">
-    <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-6 sm:gap-10 lg:gap-16 items-center">
+    <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-4 sm:gap-8 lg:gap-16 items-center">
       <div class="flex justify-center lg:justify-start reveal reveal-delay-100">
-        <div class="w-[11rem] h-[11rem] sm:w-[23rem] sm:h-[23rem] lg:w-[28rem] lg:h-[28rem]">
+        <div class="w-32 h-32 sm:w-72 sm:h-72 lg:w-[28rem] lg:h-[28rem]">
           <img
             id="hero-image"
             src={heroData.image.src}
@@ -63,18 +63,18 @@ const focusTags = [
       </div>
 
       <div class="text-center lg:text-left">
-        <p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-primary-dark mb-3 sm:mb-4 reveal reveal-delay-100">
+        <p class="text-[0.68rem] sm:text-sm font-semibold uppercase tracking-[0.14em] sm:tracking-[0.16em] text-primary-dark mb-2 sm:mb-4 reveal reveal-delay-100">
           Bioinformatics · microbiome · translational data science
         </p>
 
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 mb-4 sm:mb-5 leading-tight reveal reveal-delay-200">
+        <h1 class="text-[2rem] sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 mb-2 sm:mb-5 leading-tight reveal reveal-delay-200">
           {heroData.name}
         </h1>
 
-        <div class="min-h-[3.5rem] sm:min-h-[4rem] mb-5 sm:mb-6 reveal reveal-delay-300">
+        <div class="min-h-[2.75rem] sm:min-h-[4rem] mb-3 sm:mb-6 reveal reveal-delay-300">
           <p
             id="typing-text"
-            class="text-2xl sm:text-3xl lg:text-4xl font-handwritten text-primary font-medium leading-tight"
+            class="text-[1.55rem] sm:text-3xl lg:text-4xl font-handwritten text-primary font-medium leading-tight"
             data-text={heroData.title}
           >
             <span id="typed-content"></span>
@@ -82,7 +82,7 @@ const focusTags = [
           </p>
         </div>
 
-        <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto lg:mx-0 mb-6 sm:mb-7 reveal reveal-delay-300">
+        <p class="text-sm sm:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto lg:mx-0 mb-4 sm:mb-7 reveal reveal-delay-300">
           I build reproducible analyses and data tools to understand how
           microbial communities shape immunity, infection and inflammation.
           <span class="hidden sm:inline">
@@ -101,29 +101,29 @@ const focusTags = [
           }
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-7 reveal reveal-delay-300">
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-3 mb-5 sm:mb-7 reveal reveal-delay-300">
           <a
             href="/contact"
-            class="inline-flex w-full sm:w-auto justify-center items-center px-5 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
+            class="inline-flex w-full sm:w-auto justify-center items-center px-4 sm:px-5 py-2.5 sm:py-3 bg-primary hover:bg-primary-dark text-white text-sm sm:text-base font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
           >
             Discuss a collaboration
           </a>
           <a
             href="/projects"
-            class="inline-flex w-full sm:w-auto justify-center items-center px-5 py-3 bg-white border border-slate-200 hover:border-primary/40 text-slate-800 hover:text-primary font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
+            class="inline-flex w-full sm:w-auto justify-center items-center px-4 sm:px-5 py-2.5 sm:py-3 bg-white border border-slate-200 hover:border-primary/40 text-slate-800 hover:text-primary text-sm sm:text-base font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
           >
             View research projects
           </a>
           <a
             href={heroData.social.cv}
             download
-            class="inline-flex w-full sm:w-auto justify-center items-center px-5 py-3 text-primary hover:text-primary-dark font-medium transition-colors duration-200"
+            class="inline-flex w-full sm:w-auto justify-center items-center px-4 sm:px-5 py-1.5 sm:py-3 text-primary hover:text-primary-dark text-sm sm:text-base font-medium transition-colors duration-200"
           >
             Download CV
           </a>
         </div>
 
-        <div class="flex justify-center lg:justify-start gap-4 reveal reveal-delay-300">
+        <div class="flex justify-center lg:justify-start gap-3 sm:gap-4 reveal reveal-delay-300">
           {
             socialLinks.map((link) => (
               <a
@@ -146,7 +146,7 @@ const focusTags = [
 
     <button
       id="scroll-to-projects"
-      class="mt-10 animate-bounce text-center mx-auto block cursor-pointer hover:text-primary transition-colors duration-200"
+      class="hidden sm:block mt-8 lg:mt-10 animate-bounce text-center mx-auto cursor-pointer hover:text-primary transition-colors duration-200"
       aria-label="Scroll to research focus"
     >
       <svg
