@@ -1,4 +1,11 @@
 Changelog
+### [0.0.21](https://github.com/xec-cm/francesc-catala/compare/v0.0.20...v0.0.21) (2026-06-01)
+
+
+### Features
+
+* improve compact footer ([a759154](https://github.com/xec-cm/francesc-catala/commit/a759154daf19410ab3fada39d8b5e21e812c35b2))
+
 ### [0.0.20](https://github.com/xec-cm/francesc-catala/compare/v0.0.19...v0.0.20) (2026-06-01)
 
 
