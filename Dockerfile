@@ -1,15 +1,17 @@
 # Build Stage
-FROM node:18-alpine as build
+FROM node:22-alpine as build
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+RUN corepack enable && corepack prepare pnpm@11.1.3 --activate
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 ARG WEB3FORMS_ACCESS_KEY
 ENV WEB3FORMS_ACCESS_KEY=$WEB3FORMS_ACCESS_KEY
-RUN npm run build
+RUN pnpm run build
 
 # Serve Stage
 FROM nginx:alpine

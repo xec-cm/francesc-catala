@@ -7,7 +7,7 @@
 Analyzes your commits since the last tag and determines the version bump:
 
 ```bash
-npm run release
+pnpm run release
 ```
 
 This will:
@@ -22,9 +22,9 @@ This will:
 Force a specific version bump:
 
 ```bash
-npm run release:patch  # 0.0.1 → 0.0.2
-npm run release:minor  # 0.0.1 → 0.1.0
-npm run release:major  # 0.0.1 → 1.0.0
+pnpm run release:patch  # 0.0.1 → 0.0.2
+pnpm run release:minor  # 0.0.1 → 0.1.0
+pnpm run release:major  # 0.0.1 → 1.0.0
 ```
 
 ### Push to Deploy
@@ -99,7 +99,7 @@ git add .
 git commit -m "fix: resolve mobile menu bug"
 
 # 3. Ready to release? Run versioning
-npm run release
+pnpm run release
 
 # 4. Review the changes (CHANGELOG.md, package.json)
 git log -1
@@ -127,8 +127,8 @@ It reads directly from `package.json`, so it updates automatically when you depl
 Test what would happen without making changes:
 
 ```bash
-npm run release -- --dry-run
-npm run release:patch -- --dry-run
+pnpm run release -- --dry-run
+pnpm run release:patch -- --dry-run
 ```
 
 ---
@@ -138,7 +138,7 @@ npm run release:patch -- --dry-run
 If this is your first release after setup:
 
 ```bash
-npm run release -- --first-release
+pnpm run release -- --first-release
 ```
 
 This creates the initial tag without bumping the version.

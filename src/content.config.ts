@@ -1,8 +1,8 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
-// Blog collection schema
-const blogCollection = defineCollection({
-  type: 'content',
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     date: z.string(),
@@ -13,10 +13,8 @@ const blogCollection = defineCollection({
   }),
 });
 
-// Meta/Pages collection schema
-// This collection will hold metadata for static pages like About, Contact, etc.
-const metaCollection = defineCollection({
-  type: 'content',
+const meta = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/meta' }),
   schema: z.object({
     title: z.string(),
     slug: z.string().optional(),
@@ -28,16 +26,15 @@ const metaCollection = defineCollection({
     availabilityLabel: z.string().optional(),
     availableText: z.string().optional(),
     unavailableText: z.string().optional(),
-    workDays: z.array(z.number()).optional(), // 1=Monday, 7=Sunday
-    workHoursStart: z.number().optional(), // 0-23
-    workHoursEnd: z.number().optional(), // 0-23
+    workDays: z.array(z.number()).optional(),
+    workHoursStart: z.number().optional(),
+    workHoursEnd: z.number().optional(),
     timezone: z.string().optional(),
   }),
 });
 
-// Projects collection schema
-const projectsCollection = defineCollection({
-  type: 'content',
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -51,9 +48,8 @@ const projectsCollection = defineCollection({
   }),
 });
 
-// Export collections
 export const collections = {
-  blog: blogCollection,
-  meta: metaCollection,
-  projects: projectsCollection,
+  blog,
+  meta,
+  projects,
 };

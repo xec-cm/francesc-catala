@@ -1,0 +1,26 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F0EFEB"/>
+  <rect x="64" y="64" width="1072" height="502" rx="24" fill="white" stroke="#D6D4CE" stroke-width="2"/>
+  <circle cx="1010" cy="162" r="54" fill="#617056" fill-opacity="0.12"/>
+  <circle cx="1072" cy="238" r="86" fill="#C89F78" fill-opacity="0.14"/>
+  <path d="M146 188C146 136 184 102 230 102C274 102 302 131 302 174C302 225 263 264 207 264H146V188Z" fill="#617056" fill-opacity="0.18"/>
+  <path d="M184 382C184 312 236 265 299 265C358 265 397 306 397 365C397 435 344 490 268 490H184V382Z" fill="#617056" fill-opacity="0.12"/>
+  <text x="454" y="190" fill="#3D4435" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">
+    MICROBIOME BIOINFORMATICS
+  </text>
+  <text x="454" y="292" fill="#0F172A" font-family="Playfair Display, Georgia, serif" font-size="68" font-weight="700">
+    Francesc Català-Moll
+  </text>
+  <text x="454" y="365" fill="#617056" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">
+    Microbiome, immunity, multi-omics and research software
+  </text>
+  <text x="454" y="437" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="26">
+    Reproducible data workflows for infectious disease,
+  </text>
+  <text x="454" y="476" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="26">
+    translational research and precision health.
+  </text>
+  <text x="454" y="532" fill="#617056" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">
+    francesc-catala.com
+  </text>
+</svg>

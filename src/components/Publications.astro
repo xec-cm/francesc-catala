@@ -2,7 +2,19 @@
 import publicationsData from '../data/publications.json';
 
 // Sort by year, most recent first
-const publications = publicationsData.sort((a, b) => b.year - a.year);
+const selectedPublicationIds = [
+  "Catala_Moll_2026",
+  "Tarres_Freixas_2026",
+  "Farre_Badia_2025",
+  "Mu_oz_L_pez_2025",
+  "Catal_Moll_2024",
+  "Borgognone2022",
+];
+
+const publicationMap = new Map(publicationsData.map((pub) => [pub.id, pub]));
+const publications = selectedPublicationIds
+  .map((id) => publicationMap.get(id))
+  .filter((pub): pub is (typeof publicationsData)[number] => Boolean(pub));
 
 // Helper function to format authors list
 function formatAuthors(authors: string[]): string {
@@ -39,7 +51,8 @@ function formatAuthors(authors: string[]): string {
         Selected Publications
       </h2>
       <p class="text-lg text-slate-600 font-sans max-w-2xl mx-auto">
-        Peer-reviewed research in epigenetics, microbiome, and immunology
+        A curated set of recent and representative papers in microbiome,
+        infectious disease and computational biology
       </p>
     </div>
 

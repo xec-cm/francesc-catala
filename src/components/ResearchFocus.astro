@@ -1,0 +1,62 @@
+---
+const focusAreas = [
+  {
+    title: "Microbiome & immunity",
+    description:
+      "I study host-microbe interactions in infection, inflammation and precision health, with an emphasis on interpretable biological signals.",
+    detail: "HIV, gut ecology, immune response",
+  },
+  {
+    title: "Multi-omics evidence",
+    description:
+      "I integrate microbiome, epigenomic and clinical data into reproducible analyses that help teams move from noisy measurements to decisions.",
+    detail: "Epigenetics, resistome, metadata",
+  },
+  {
+    title: "Research software",
+    description:
+      "I build practical R/Bioconductor tools and workflows for robust differential abundance testing, validation and communication.",
+    detail: "dar, biocroxytest, pipelines",
+  },
+];
+---
+
+<section id="research-focus" class="py-18 px-4 sm:px-6 lg:px-8 bg-white relative">
+  <div class="absolute top-0 left-0 right-0 h-px bg-slate-200"></div>
+
+  <div class="max-w-7xl mx-auto">
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.16em] text-primary-dark mb-3">
+          Research focus
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-4">
+          Turning complex biology into usable evidence
+        </h2>
+        <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+          My work sits at the intersection of computational biology, microbiome
+          analytics and translational research. I care most about methods that
+          are rigorous enough for science and clear enough for real decisions.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-3">
+        {
+          focusAreas.map((area) => (
+            <article class="rounded-lg border border-slate-200 bg-secondary/30 p-5 transition-colors duration-200 hover:border-primary/30 hover:bg-white">
+              <h3 class="text-lg font-serif font-bold text-slate-900 mb-3">
+                {area.title}
+              </h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                {area.description}
+              </p>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-dark">
+                {area.detail}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

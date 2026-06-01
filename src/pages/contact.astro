@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 
 // Get contact page content
 const contactEntry = await getEntry('meta', 'contact');
-const { Content } = await contactEntry.render();
+const { Content } = await render(contactEntry);
 
 // Get Web3Forms access key from environment variable
 const web3formsKey = import.meta.env.WEB3FORMS_ACCESS_KEY;

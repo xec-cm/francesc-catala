@@ -1,7 +1,8 @@
 {
   "name": "francesc-catala",
   "type": "module",
-  "version": "0.0.21",
+  "version": "0.0.22",
+  "packageManager": "pnpm@11.1.3",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -16,7 +17,7 @@
     "@astrojs/sitemap": "^3.6.0",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.15.8",
+    "astro": "^6.4.2",
     "leaflet": "^1.9.4",
     "tailwindcss": "^4.1.17"
   },

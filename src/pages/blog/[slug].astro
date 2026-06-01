@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 // Generate static paths for all blog posts
@@ -9,13 +9,13 @@ export async function getStaticPaths() {
   });
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 // Get all posts for sidebar
 const allPosts = await getCollection('blog', ({ data }) => {
@@ -24,7 +24,7 @@ const allPosts = await getCollection('blog', ({ data }) => {
 
 // Sort by date and filter out current post
 const otherPosts = allPosts
-  .filter(p => p.slug !== post.slug)
+  .filter(p => p.id !== post.id)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 5); // Show latest 5 posts
 
@@ -38,7 +38,7 @@ function formatDate(dateString: string): string {
 <Layout
   title={`${post.data.title} - Francesc Català-Moll`}
   description={post.data.excerpt}
-  image={post.data.image || '/og-image.jpg'}
+  image={post.data.image || '/og-image.svg'}
   type="article"
 >
   <div class="min-h-screen bg-white">
@@ -68,7 +68,7 @@ function formatDate(dateString: string): string {
               <div class="space-y-4">
                 {otherPosts.map((otherPost) => (
                   <a
-                    href={`/blog/${otherPost.slug}`}
+                    href={`/blog/${otherPost.id}`}
                     class="block group"
                   >
                     <article class="pb-4 border-b border-slate-100 last:border-0">

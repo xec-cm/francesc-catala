@@ -11,9 +11,9 @@ interface Props {
 }
 
 const {
-  title = "Francesc Català-Moll - Bioinformatics & Microbiome Analytics",
-  description = "Bioinformatician specializing in microbiome research, epigenetics, and multi-omics integration. Using AI to uncover microbiome-immune system interactions.",
-  image = "/og-image.jpg",
+  title = "Francesc Català-Moll - Microbiome Bioinformatics & Multi-omics",
+  description = "Bioinformatician working on microbiome-immune system interactions, multi-omics integration, reproducible research software, and AI-guided biological data analysis.",
+  image = "/og-image.svg",
   type = "website",
 } = Astro.props;
 
@@ -81,22 +81,25 @@ const imageURL = new URL(image, siteURL);
         "alternateName": ["Xec Català", "Francesc Català"],
         "disambiguatingDescription": "Bioinformatician and researcher in microbiome and epigenetics, distinct from the photographer Francesc Català-Roca.",
         "url": "https://francesc-catala.com",
-        "image": "https://francesc-catala.com/og-image.jpg",
+        "image": "https://francesc-catala.com/og-image.svg",
         "jobTitle": "Bioinformatician",
-        "description": "Bioinformatician specializing in microbiome research, epigenetics, and multi-omics integration. Using AI to uncover microbiome-immune system interactions.",
+        "description": "Bioinformatician working on microbiome-immune system interactions, multi-omics integration, reproducible research software, and AI-guided biological data analysis.",
         "knowsAbout": [
           "Bioinformatics",
           "Microbiome Research",
           "Epigenetics",
           "Multi-omics",
           "Computational Biology",
-          "Data Science"
+          "Data Science",
+          "Bioconductor",
+          "Research Software"
         ],
         "sameAs": [
           "https://twitter.com/fcatalamoll",
           "https://github.com/xec-cm",
           "https://www.linkedin.com/in/francesc-catala-moll",
-          "https://orcid.org/0000-0003-2883-0749"
+          "https://orcid.org/0000-0002-2354-8648",
+          "https://scholar.google.es/citations?user=BtCVHLgAAAAJ&hl"
         ]
       }
     </script>
@@ -157,7 +160,7 @@ const imageURL = new URL(image, siteURL);
       Roboto,
       sans-serif;
     line-height: 1.6;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     background-color: white;
   }
 
