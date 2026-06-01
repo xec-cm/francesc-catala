@@ -1,4 +1,16 @@
 Changelog
+### [0.0.20](https://github.com/xec-cm/francesc-catala/compare/v0.0.19...v0.0.20) (2026-06-01)
+
+
+### Features
+
+* update publications list ([2165ddc](https://github.com/xec-cm/francesc-catala/commit/2165ddc2a072f5ad7e348e05dbe701d45d56e2ab))
+
+
+### Bug Fixes
+
+* indexation issues (trailing slash and canonicals) ([c417f6b](https://github.com/xec-cm/francesc-catala/commit/c417f6b8a4838007b2ca2777e39a918bc362ea2f))
+
 ### [0.0.19](https://github.com/xec-cm/francesc-catala/compare/v0.0.18...v0.0.19) (2025-11-26)
 
 
